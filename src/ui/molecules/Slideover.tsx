@@ -4,15 +4,18 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ICard } from '@/src/interfaces/card.interface'
 import Image from 'next/image';
 import Button from '../atoms/Button';
+import Description from '../atoms/Description';
 
 interface ISlideover {
     open: boolean
     setOpen: (open: boolean) => void
     card: ICard
+    onClickTrade: () => void
+    isTradeAvailable: boolean;
 }
 
 
-export default function Slideover({ open, setOpen, card }: ISlideover) {
+export default function Slideover({ open, setOpen, card, onClickTrade=()=>{}, isTradeAvailable=false }: ISlideover) {
 
     // If the image url is not a valid url, use a default image
     const url = useMemo(() => {
@@ -61,8 +64,10 @@ export default function Slideover({ open, setOpen, card }: ISlideover) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                                        <Button label='Offer Trade' onClick={() => { }} />
+                                        <div className="relative mt-2 flex-1 px-4 sm:px-6">
+                                            {isTradeAvailable && <div className='flex w-full justify-end pb-2'>
+                                                <Button label='Offer Trade' onClick={onClickTrade} />
+                                            </div>}
                                             <Image
                                                 src={url}
                                                 className="w-full object-cover"
@@ -70,9 +75,13 @@ export default function Slideover({ open, setOpen, card }: ISlideover) {
                                                 height={100}
                                                 alt='card image'
                                             />
-                                            <p className="text-black mt-2">Title: {card.title}</p>
-                                            <p className="text-black mt-2">Description: {card.description}</p>
-                                            
+                                            <div className='mt-4 divide-y-2 border-b-2'>
+                                                <Description label='Title' value={card.title} />
+                                                <Description label='Description' value={card.description} />
+                                                {card?.owner?.walletAddress && <Description label='Owner' value={shortenWalletAddress(card?.owner?.walletAddress)} />}
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </Dialog.Panel>
@@ -83,4 +92,14 @@ export default function Slideover({ open, setOpen, card }: ISlideover) {
             </Dialog>
         </Transition.Root>
     )
+}
+
+function shortenWalletAddress(walletAddress: string) {
+    if (!walletAddress || walletAddress.length <= 12) {
+        return walletAddress;
+    }
+
+    const prefix = walletAddress.substring(0, 7);
+    const suffix = walletAddress.substring(walletAddress.length - 5);
+    return `${prefix}...${suffix}`;
 }

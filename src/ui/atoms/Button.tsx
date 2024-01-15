@@ -7,6 +7,7 @@ export default function Button({ label, onClick = () => { }, className, disabled
                 !active ?
                     'border-white bg-black text-white rounded' :
                     'border-black bg-white text-black rounded',
+                disabled && 'opacity-50 cursor-not-allowed',
                 className
             )}
             onClick={onClick}

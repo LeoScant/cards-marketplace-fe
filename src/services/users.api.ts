@@ -1,6 +1,7 @@
 import { config } from "../config/wagmi";
 import useStore from "../store/store";
 import api from "./api";
+import { getTrades } from "./trades.api";
 
 export const handleLogin = async (address: string, signMessage: any) => {
     const nonce = await getNonce(address);
@@ -10,6 +11,7 @@ export const handleLogin = async (address: string, signMessage: any) => {
         useStore.getState().setToken(response.data.token);
         useStore.getState().setUser(response.data.user);
         useStore.getState().setIsLoggedIn(true);
+        await getTrades();
     }else {
         console.log("Nonce not found");
     }

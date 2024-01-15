@@ -1,6 +1,6 @@
 import { http, createConfig } from 'wagmi'
 import { sepolia } from 'wagmi/chains'
-import { injected } from 'wagmi/connectors' 
+import { injected } from 'wagmi/connectors'
 
 const connector = injected({ target: 'metaMask' }) 
 

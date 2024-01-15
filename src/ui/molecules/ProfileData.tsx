@@ -1,16 +1,21 @@
-import { ICard, IUser } from "@/src/interfaces/card.interface";
+import { IUser } from "@/src/interfaces/card.interface";
 import Button from "../atoms/Button";
-import { useState } from "react";
-import AddCardModal from "./AddCardModal";
-import { createCard } from "@/src/services/cards.api";
+import { useMemo, useState } from "react";
+import useStore from "@/src/store/store";
 
-export default function ProfileData({ user, title }: { user: IUser, title: string }) {
+export default function ProfileData({ user}: { user: IUser }) {
+    const trades = useStore((state: any) => state.trades)
+
     return (
-        <div className="my-4 space-y-2">
-            <h1 className="text-2xl font-bold mb-3">{title}</h1>
-            <div className="flex space-x-2 items-center"><h1 className="text-lg">Wallet:</h1> <p>{user?.walletAddress}</p></div>
-            <div className="flex space-x-2 items-center"><h1 className="text-lg">Name:</h1> <p>{user?.username}</p></div>
-            <div className="flex space-x-2 items-center"><h1 className="text-lg">Email:</h1> <p>{user?.email}</p></div>
+        <div>
+            <div className="flex items-center space-x-2 mb-4">
+                <h1 className="text-2xl font-bold">Your Profile</h1>
+                <p className="text-xl">[{user?.walletAddress}]</p>
+            </div>
+            <div className="flex items-center space-x-2 mb-4">
+                <h1 className="text-xl">Your have {trades?.length || 0} trade offers</h1>
+                {trades?.length > 0 && <Button label='Show' onClick={() => useStore.getState().setIsOpenTradeOffersModal(true)} />}
+            </div>
         </div>
     )
 }

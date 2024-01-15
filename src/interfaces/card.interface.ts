@@ -3,6 +3,9 @@ export interface ICard {
     title: string;
     description: string;
     imageurl: string;
+    tokenId?: string;
+    ownerId?: number;
+    owner?: {walletAddress: string};
 }
 
 export interface IUser {
