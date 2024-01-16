@@ -3,7 +3,7 @@ import axios from 'axios';
 import useStore from '../store/store';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000/',
+  baseURL: process.env.API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

@@ -26,7 +26,12 @@ npm install
 # or
 yarn install
 ```
-2. Start the development server:
+
+2. Create a .env.local file with:
+- CONTRACT_ADDRESS: The address of the Ethereum contract you're interacting with.
+- API_BASE_URL: Baseurl of the backend server.
+
+3. Start the development server:
 ```bash
 npm run dev
 ```
