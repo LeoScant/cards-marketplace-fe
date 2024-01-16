@@ -1,6 +1,6 @@
 'use client';
 import { Connector } from 'wagmi';
-import Button from './atoms/Button';
+import Button from '../atoms/Button';
 
 export function ConnectWalletButton({ready, metamaskConnector, connect, chainId}: 
     {

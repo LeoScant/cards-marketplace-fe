@@ -3,13 +3,13 @@ import React from 'react';
 import Image from 'next/image';
 import { Connector, useChainId, useConnect } from 'wagmi';
 import { useState, useEffect } from 'react';
-import { config } from '../config/wagmi';
+import { config } from '../../config/wagmi';
 import { useAccount } from 'wagmi';
-import { handleLogin, handleLogout } from '../services/users.api'
+import { handleLogin, handleLogout } from '../../services/users.api'
 import { disconnect } from 'wagmi/actions';
 import { signMessage } from '@wagmi/core'
-import useStore from '../store/store';
-import Button from './atoms/Button';
+import useStore from '../../store/store';
+import Button from '../atoms/Button';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 

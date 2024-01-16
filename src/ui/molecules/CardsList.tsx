@@ -1,6 +1,6 @@
 // Import necessary dependencies
 import { ICard } from "@/src/interfaces/card.interface"
-import Card from "@/src/ui/Card"
+import Card from "@/src/ui/atoms/Card"
 import { likeCard } from "@/src/services/cards.api"
 import Icon from "../atoms/Icon"
 import useStore from "@/src/store/store"

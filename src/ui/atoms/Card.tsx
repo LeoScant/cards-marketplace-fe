@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { useMemo } from 'react';
-import Icon from './atoms/Icon';
+import Icon from './Icon';
+import { DEFAULT_IMAGE_URL, isValidUrl } from '@/src/utils/general.utils';
 
 type CardProps = {
     imageUrl: string;
@@ -17,12 +18,7 @@ type CardProps = {
 export default function Card({ imageUrl, title, description, altText = "card image", like = false, onClickLike = () => { }, onClickCard = () => { }, canEdit=false, onDelete=()=>{} }: CardProps) {
     // If the image url is not a valid url, use a default image
     const url = useMemo(() => {
-        try {
-            new URL(imageUrl);
-            return imageUrl;
-        } catch (_) {
-            return "https://i.pinimg.com/originals/ed/c7/c6/edc7c6437653ab73346c7bf08c884077.jpg";
-        }
+        return imageUrl && isValidUrl(imageUrl) ? imageUrl : DEFAULT_IMAGE_URL;
     }, [imageUrl]);
 
     return (
@@ -39,7 +35,6 @@ export default function Card({ imageUrl, title, description, altText = "card ima
                         width={300}
                         height={100}
                         alt={altText}
-
                     />
                 </div>
 
