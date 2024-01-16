@@ -27,9 +27,6 @@ export default function TradeOfferModal({ isOpen, closeModal, yourCard, hisCard,
     const hisCardImageurl = useMemo(() => {
         return hisCard?.imageurl && isValidUrl(hisCard?.imageurl) ? hisCard?.imageurl : DEFAULT_IMAGE_URL;
     }, [hisCard]);
-
-    console.log('yourcard', yourCard)
-
     
     /**
      * Approves a trade offer by calling the 'approve' function on the contract.
@@ -78,7 +75,7 @@ export default function TradeOfferModal({ isOpen, closeModal, yourCard, hisCard,
                 {isLoading ?
                     <p className="text-black">Loading</p> :
                     isApproving ?
-                        <p className="text-black">Wait for transaction to be approve and then press Confirm</p> :
+                        <p className="text-black">Wait for transaction to be approved and then press Confirm</p> :
                         <>
                             <CardTradeDisplay imageUrl={yourCardImageurl} title="You give:" />
                             <Icon type="trade" onClick={() => { }} className="text-black w-16 h-16" />
