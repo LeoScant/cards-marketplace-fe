@@ -7,7 +7,6 @@ import CardTradeDisplay from "./CardTradeDisplay";
 import { useWriteContract } from 'wagmi';
 import contractABI from '../../utils/TheCardsEmporiumContractAbi.json';
 import { createTrade } from "@/src/services/trades.api";
-const contractAddress = '0xFf4fA59707B0C9A531Cf34eDCfC53E71E030471B';
 
 export default function TradeModal({ isOpen, closeModal, wantedCard, ownedCards, selectedCardId, setSelectedCardId }: { isOpen: boolean, closeModal: any, wantedCard?: ICard, ownedCards?: ICard[], selectedCardId?: number, setSelectedCardId?: any }) {
     const { writeContractAsync } = useWriteContract()
@@ -17,10 +16,10 @@ export default function TradeModal({ isOpen, closeModal, wantedCard, ownedCards,
         if (selectedCard?.tokenId && wantedCard?.id && selectedCardId) {
             try {
                 await writeContractAsync({
-                    address: contractAddress,
+                    address: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`,
                     abi: contractABI,
                     functionName: 'approve',
-                    args: ['0xf1958805075C57E0e1DD44d110d5BB29F2c0182C', selectedCard?.tokenId]
+                    args: [process.env.NEXT_PUBLIC_CONTRACT_OWNER_ADDRESS, selectedCard?.tokenId]
                 })
 
                 await createTrade(selectedCardId, wantedCard.id)

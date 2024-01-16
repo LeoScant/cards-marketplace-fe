@@ -28,6 +28,8 @@ export default function TradeOfferModal({ isOpen, closeModal, yourCard, hisCard,
         return hisCard?.imageurl && isValidUrl(hisCard?.imageurl) ? hisCard?.imageurl : DEFAULT_IMAGE_URL;
     }, [hisCard]);
 
+    console.log('yourcard', yourCard)
+
     
     /**
      * Approves a trade offer by calling the 'approve' function on the contract.
@@ -38,10 +40,10 @@ export default function TradeOfferModal({ isOpen, closeModal, yourCard, hisCard,
             setIsLoading(true);
             setIsApproving(true)
             await writeContractAsync({
-                address: process.env.CONTRACT_ADDRESS as `0x${string}`,
+                address: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`,
                 abi: contractABI,
                 functionName: 'approve',
-                args: ['0xf1958805075C57E0e1DD44d110d5BB29F2c0182C', yourCard?.tokenId]
+                args: [process.env.NEXT_PUBLIC_CONTRACT_OWNER_ADDRESS, yourCard?.tokenId]
             })
         } catch (e) {
             console.log(e)
