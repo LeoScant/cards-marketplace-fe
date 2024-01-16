@@ -6,8 +6,13 @@ import { getTrades } from "./trades.api";
 export const handleLogin = async (address: string, signMessage: any) => {
     const nonce = await getNonce(address);
     if (nonce) {
+        // sign nonce
         const signature = await signMessage(config, { message: nonce.toString() });
+
+        // send signature and wallet address to server
         const response = await api.post(`/users/login`, { walletAddress: address, signature: signature });
+
+        // set token and user in store
         useStore.getState().setToken(response.data.token);
         useStore.getState().setUser(response.data.user);
         useStore.getState().setIsLoggedIn(true);

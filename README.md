@@ -30,6 +30,14 @@ On the homepage, you'll find a list of all the cards available in the store from
 - **Offer a transfer**: from the details sidebar you can offer a card to the other user in exchange of that card
 - **See the received offers of transfer**: on top of your profile page you can see the offers you received and accept the offer
 
+
+## Project structure
+- In ```src/ui``` you can find all the components divided into ```atoms``` and ```molecules```.
+- In ```src/pages``` you can find the 2 pages of the application, the Homepage and the User page.
+- In ```src/services``` you can find all the api calls management.
+- In ```src/store``` you can find all the application store management.
+
+
 ## Getting Started
 
 To get the development server running, follow these steps:

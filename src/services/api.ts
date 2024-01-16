@@ -10,9 +10,10 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = useStore.getState().token; // Ottenere l'ultimo token
+  // get token from store and add it to the request
+  const token = useStore.getState().token;
   if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`; // Aggiungere il token all'header
+    config.headers['Authorization'] = `Bearer ${token}`;
   }
   return config;
 }, (error) => {
