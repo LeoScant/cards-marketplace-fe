@@ -30,6 +30,10 @@ On the homepage, you'll find a list of all the cards available in the store from
 - **Offer a transfer**: from the details sidebar you can offer a card to the other user in exchange of that card
 - **See the received offers of transfer**: on top of your profile page you can see the offers you received and accept the offer
 
+To fully test the application, it is recommended to have two different wallets on the Sepolia Ethereum network. You can add some Sepolia ETH to your wallets using the [Sepolia Faucet](https://sepoliafaucet.com/). 
+
+Once you have your wallets set up, create at least one card per wallet. Then, offer a trade from one profile to the other and then accept it. This will allow you to fully test the trading functionality of the application.
+
 
 ## Project structure
 - In ```src/ui``` you can find all the components divided into ```atoms``` and ```molecules```.
